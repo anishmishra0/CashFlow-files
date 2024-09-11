@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html dir="auto" lang="en" class="theme-dark">
+<head>
+	<meta charset="UTF-8" />
+	<title>CashFlow</title>
+
+	<meta name="description" content="CashFlow helps to manage daily income and spendings in a fast and efficient way. It keeps record and help users to create informed financial decision and achive their financial goals faster" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="icon" href="assets/favicon.png" />
+
+	<meta property="og:url" content="https://cashflow-site.web.app">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="CashFlow" />
+	<meta property="og:description" content="CashFlow helps to manage daily income and spendings in a fast and efficient way. It keeps record and help users to create informed financial decision and achive their financial goals faster" />
+	<meta property="og:image" content="https://github.com/anishmishra0/CashFlow-website/blob/main/assets/og_image.png?raw=true">
+
+	<!-- Twitter Meta Tags -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta property="twitter:domain" content="cashflow-site.web.app">
+	<meta property="twitter:url" content="https://cashflow-site.web.app">
+	<meta name="twitter:title" content="CashFlow">
+	<meta name="twitter:description" content="CashFlow helps to manage daily income and spendings in a fast and efficient way. It keeps record and help users to create informed financial decision and achive their financial goals faster">
+	<meta name="twitter:image" content="https://github.com/anishmishra0/CashFlow-website/blob/main/assets/og_image.png?raw=true">
+	
+	<meta name="keywords" content="budget,spending,tracker,cashflow,mobile,app"/>
+	<meta name="copyright" content="Anish Kumar" />
+	<meta name="author" content="Anish Kumar" />
+	<meta name="robots" content="index,nofollow" />
+
+	<style>
+		:root {
+		  --font-xl: 42px;
+		  --font-lg: 24px;
+		  --font-md: 20px;
+		  --font-sm: 18px;
+		  --font-xs: 16px;
+		  --font-xxs: 14px;
+		
+		  --screenshot-width: 300px;
+		  --screenshot-height: 600px;
+		  /* Light */
+		  --background-light: #ffffff;
+		  /*--background-image-light: url(assets/light-background.svg);*/
+		  --text-light: #222222;
+		  --text-color-footer-light: #8a8a8a;
+		  --text-color-link-hover-light: #454545;
+		  
+		  /* Dark */
+		  --background-dark: #121212;
+		  /*--background-image-dark: url(assets/dark-background.svg);*/
+		  --text-dark: #e9e9e9;
+		  --text-color-footer-dark: #aeaeae;
+		  --text-color-link-hover-dark: #454545;
+		}
+		@media (max-width: 768px) {
+		  :root {
+		    --font-xl: 18px;
+		    --font-lg: 16px;
+		    --font-md: 14px;
+		    --font-sm: 12px;
+		    --font-xs: 12px;
+		    --font-xxs: 12px;
+		
+		    --screenshot-width: 250px;
+		    --screenshot-height: 500px;
+		  }
+		}
+		
+		/* Default */
+		html.theme-light {
+		  --background-color: var(--background-light);
+		  --text-color: var(--text-light);
+		  --background-image: var(--background-image-light);
+		  --contrast-background-color: var(--background-dark);
+		  --text-color-footer: var(--text-color-footer-light);
+		  --text-color-link-hover: var(--text-color-link-hover-light)
+		}
+		/* Dark */
+		html.theme-dark {
+		  --background-color: var(--background-dark);
+		  --text-color: var(--text-dark);
+		  --background-image: var(--background-image-dark);
+		  --contrast-background-color: var(--background-light);
+		  --text-color-footer: var(--text-color-footer-dark);
+		  --text-color-link-hover: var(--text-color-link-hover-dark)  
+		}
+		
+		body {
+		  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+		  color: var(--text-color);
+		  display: flex;
+		  min-height: 100vh;
+		  flex-direction: column;
+		  font-size: var(--font-md);
+		  background-color: var(--background-color);
+		  background-image: var(--background-image);
+		  background-size: cover;
+		  background-position-x: 20vw;
+		  background-position-y: -10vh;
+		  background-repeat: no-repeat;
+		  line-height: 1.4;
+		}
+		
+		main {
+		  flex: 1;
+		  width: 100%;
+		}
+		
+		a {
+		  color: var(--text-color-footer);
+		  /*color: #65638f;*/
+		  text-decoration: none;
+		}
+		a:hover {
+		  color: var(--text-color-link-hover);
+		}
+		
+		.button {
+		  display: flex;
+		  background: linear-gradient(65deg, #DA552F, #ea8e39);
+		  font-family: "Heebo", sans-serif;
+		  color: #fff;
+		  display: inline-flex;
+		  font-size: var(--font-xxs);
+		  letter-spacing: 0px;
+		  font-weight: 700;
+		  line-height: 16px;
+		  text-transform: uppercase;
+		  text-decoration: none !important;
+		  border: none;
+		  border-radius: 2px;
+		  cursor: pointer;
+		  justify-content: center;
+		  padding: 16px 32px;
+		  text-align: center;
+		  white-space: nowrap;
+		  box-shadow: 0 8px 24px rgba(32, 43, 54, 0.12);
+		  mix-blend-mode: multiply;
+		  transition: all 0.15s ease;
+		}
+		.button:hover {
+		  color: #fff;
+		  box-shadow: 0 8px 24px rgba(32, 43, 54, 0.25);
+		}
+		.button--link {
+		  background: rgba(0, 0, 0, 0);
+		  color: #5A51FE;
+		  box-shadow: none;
+		}
+		.button--link:hover {
+		  color: #8751FE;
+		  box-shadow: none;
+		}
+		
+		.accent {
+		  color: #5A51FE;
+		}
+		
+		.container {
+		  max-width: 960px;
+		  padding: 0 30px;
+		  margin: auto;
+		}
+		
+		h1, h2 {
+		  font-family: "Heebo", sans-serif;
+		}
+		
+		.container-desktop {
+		  max-width: 960px;
+		  padding: 0 30px;
+		  margin: auto;
+		}
+		@media (max-width: 768px) {
+		  .container-desktop {
+		    max-width: 100%;
+		    padding: 0;
+		  }
+		}
+		
+		.tobi-zoom__icon {
+		  display: none;
+		}
+		
+		.app__header {
+		  display: flex;
+		  flex-direction: row;
+		  margin-top: 128px;
+		  margin-bottom: 128px;
+		  align-items: center;
+		}
+		@media (max-width: 768px) {
+		  .app__header {
+		    align-items: flex-start;
+		    margin-top: 32px;
+		    margin-bottom: 16px;
+		  }
+		}
+		.app__logo-wrapper {
+		  display: inline-block;
+		  background-size: contain;
+		  max-width: 250px;
+		  max-height: 250px;
+		  padding: 1px;
+		  margin-right: 64px;
+		  width: 100%;
+		  height: 100%;
+		  background-repeat: no-repeat;
+		}
+		html[dir=rtl] .app__logo-wrapper {
+		  margin-left: 64px;
+		  margin-right: 0;
+		}
+		@media (max-width: 768px) {
+		  .app__logo-wrapper {
+		    max-width: 100px;
+		    max-height: 100px;
+		    margin-right: 16px;
+		  }
+		}
+		.app__logo {
+		  border-radius: 22.5%;
+		  mask-size: cover;
+		  width: 100%;
+		  height: auto;
+		}
+		.app__name {
+		  font-size: var(--font-xl);
+		  margin: 0;
+		}
+		.app__description {
+		  font-size: var(--font-lg);
+		}
+		@media (max-width: 768px) {
+		  .app__description {
+		    margin-top: 8px;
+		    margin-bottom: 0;
+		  }
+		}
+		.app__screenshot-a{
+		  text-align:center;
+		}
+		.app__screenshots-list {
+		  display: grid;
+		  grid-template-columns: repeat(6, var(--screenshot-width));
+		  grid-column-gap: 20px;
+		  padding: 30px 0;
+		  
+		}
+		@media (max-width: 768px) {
+		  .app__screenshots-list {
+		    padding: 32px;
+		  }
+		}
+		.app__screenshot {
+		  max-width:var(--screenshot-width);
+		  height:var(--screenshot-height);
+		  object-fit:contain;
+		  border-radius: 16px;
+		  /*box-shadow: 0 12px 48px rgba(17, 16, 62, 0.12);*/
+		  transition: all 0.3s ease-in-out;
+		  transform: scale(1);
+		  cursor: pointer;
+		}
+		.app__screenshot:hover {
+		  /*box-shadow: 0 24px 48px rgba(17, 16, 62, 0.12);*/
+		  transform: scale(1.05);
+		}
+		.app__screenshots-wrapper {
+		  overflow-y: auto;
+		}
+		.app__feature-container {
+		margin:auto;
+		}
+		.app__feature-wrapper{
+		  display: flex;
+		  justify-content: center;
+		  width: 100%;
+		}
+		.app__feature {
+		  width: 60%;
+		  border-radius: 16px;
+		  transition: all 0.3s ease-in-out;
+		  transform: scale(1);
+		}
+		@media (max-width: 768px) {
+		  .app__feature {
+		    width: 90%;
+		  }
+		}
+		
+		.app__buttons {
+		  display: flex;
+		  flex-direction: row;
+		  align-items: center;
+		  margin-left: -9.8px;
+		}
+		.app__buttons--mobile {
+		  display: none;
+		}
+		@media (max-width: 768px) {
+		  .app__buttons {
+		    margin-left: 0;
+		    margin-bottom: 64px;
+		  }
+		  .app__buttons--mobile {
+		    display: flex;
+		    justify-content: center;
+		  }
+		  .app__buttons--desktop {
+		    display: none;
+		  }
+		}
+		.app__button-play img {
+		  width: 176.4px;
+		}
+		.app__button-ios img {
+		  width: 140px;
+		}
+		.app__button-web {
+		  margin-left: 12px;
+		}
+		.app__button-web img {
+		  width: 157px;
+		}
+		@media (max-width: 768px) {
+		  .app__button-play img {
+		    width: 126px;
+		  }
+		  .app__button-ios img {
+		    width: 100px;
+		  }
+		  .app__button-web {
+		    margin-left: 8px;
+		  }
+		  .app__button-web img {
+		    width: 112px;
+		  }
+		}
+		.app__section-title {
+		  font-size: var(--font-lg);
+		}
+		.app__section {
+		  margin-bottom: 48px;
+		}
+		@media (max-width: 768px) {
+		  .app__section {
+		    margin-bottom: 64px;
+		  }
+		}
+		.app__featured-content {
+		  display: grid;
+		  grid-template-columns: 1fr 1fr 1fr 1fr;
+		  grid-column-gap: 32px;
+		  align-items: center;
+		}
+		@media (max-width: 768px) {
+		  .app__featured-content {
+		    display: block;
+		    padding: 32px;
+		  }
+		}
+		.app__featured-image {
+		  width: 100%;
+		  margin: auto;
+		}
+		
+		.footer {
+		  padding: 16px 0;
+		  font-size: var(--font-xs) !important;
+		}
+		.footer a {
+		  font-size: var(--font-xs) !important;
+		}
+		.footer__container {
+		  color: var(--text-color-footer);
+		  display: flex;
+		  width: 100%;
+		  justify-content: space-between;
+		  align-items: center;
+		}
+		@media (max-width: 768px) {
+		  .footer__container {
+		    flex-direction: column-reverse;
+		    align-items: flex-start;
+		  }
+		}
+		.footer__links {
+		  list-style: none;
+		  display: flex;
+		  padding-left: 0;
+		}
+		.footer__link {
+		  margin-left: 32px;
+		}
+		@media (max-width: 768px) {
+		  .footer__link {
+		    margin-left: 0;
+		    margin-right: 8px;
+		  }
+		}
+		
+		.page {
+		  max-width: 960px;
+		  padding: 0 30px;
+		  margin: auto;
+		}
+		
+		.bulb {
+		  font-size: 1.5rem;
+		  background-color: rgba(0, 0, 0, 0.7);
+		  border-radius: 0.75em;
+		  /* box-shadow: 0.125em 0.125em 0 0.125em rgba(0, 0, 0, 0.3) inset; */
+		  color: #fdea7b;
+		  display: inline-flex;
+		  align-items: center;
+		  margin: auto;
+		  padding: 0.15em;
+		  width: 3em;
+		  height: 1.5em;
+		  transition: background-color 0.1s 0.3s ease-out, box-shadow 0.1s 0.3s ease-out;
+		  -webkit-appearance: none;
+		  -moz-appearance: none;
+		  appearance: none;
+		  z-index: 99;
+		  position:fixed;
+		  bottom: 2rem;
+		  right: 1rem;
+		}
+		
+		.bulb::before, .bulb:after {
+		  box-sizing: border-box;
+		  content: "";
+		  display: block;
+		}
+		
+		.bulb::before {
+		  background-color: #d7d7d7;
+		  border-radius: 50%;
+		  width: 1.2em;
+		  height: 1.2em;
+		  transition: background-color 0.1s 0.3s ease-out, transform 0.3s ease-out;
+		  z-index: 100;
+		}
+		
+		.bulb::after {
+		  background: linear-gradient(transparent 50%, rgba(0, 0, 0, 0.15) 0) 0 50% / 50% 100%, repeating-linear-gradient(90deg, #bbb 0, #bbb, #bbb 20%, #999 20%, #999 40%) 0 50% / 50% 100%, radial-gradient(circle at 50% 50%, #888 25%, transparent 26%);
+		  background-repeat: no-repeat;
+		  border: 0.25em solid transparent;
+		  border-left: 0.4em solid #d8d8d8;
+		  border-right: 0 solid transparent;
+		  transition: border-left-color 0.1s 0.3s ease-out, transform 0.3s ease-out;
+		  transform: translateX(-22.5%);
+		  transform-origin: 25% 50%;
+		  width: 1.2em;
+		  height: 1em;
+		}
+		
+		/* Checked */
+		.bulb:checked {
+		  background-color: rgba(0, 0, 0, 0.45);
+		  /* box-shadow: 0.125em 0.125em 0 0.125em rgba(0, 0, 0, 0.1) inset; */
+		}
+		
+		.bulb:checked::before {
+		  background-color: currentColor;
+		  transform: translateX(125%)
+		}
+		
+		.bulb:checked::after {
+		  border-left-color: currentColor;
+		  transform: translateX(-2.5%) rotateY(180deg);
+		}	</style>
+	<link rel="stylesheet" href="assets/tobi.css" />
+</head>
+	<body>
+		<main>
+			<input class="bulb" id="toggle-theme" type="checkbox" readOnly/>
+<header class="app__header container">
+	<div class="app__logo-wrapper"> <img class="app__logo" src="assets/logo.png" alt="CashFlow">
+	</div>
+	<div class="app__infos">
+		<h1 class="app__name">CashFlow</h1>
+		<p class="app__description">Track your financial journey, analyse your progress and grow your wealth</p>
+		<div class="app__buttons app__buttons--desktop">
+			<!--
+			<a href="https://play.google.com/store" class="app__button-play" target="_blank"
+				title="Get on Google Play">
+				<img src="assets/google-play-badge.png" alt="Get on Google Play">
+			</a>
+		-->
+		<a style="display: inline-block; box-sizing: border-box; border-radius: 8px; background-color: #1595e7; padding: 14px 19px 14px 19px; font-family: 'Fira Sans', Arial, Helvetica, sans-serif; font-weight: 500; font-size: 16px; line-height: 24px; letter-spacing: -0.2px; color: #ffffff; vertical-align: top; text-align: center; text-align-last: center; text-decoration: none; -webkit-text-size-adjust: none;" href="https://github.com/anishmishra0/CashFlow-website/releases/download/Latest/CashFlow.apk" target="_blank"><span style="display: block;"><span>Download latest version</span></span></a>
+		</div>
+	</div>
+</header>
+<div class="app__buttons app__buttons--mobile container">
+	<!--
+	<a href="https://play.google.com/store" class="app__button-play" target="_blank"
+		title="Get on Google Play">
+		<img src="assets/google-play-badge.png" alt="Get on Google Play">
+	</a>
+	-->
+	<a style="display: inline-block; box-sizing: border-box; border-radius: 8px; background-color: #1595e7; padding: 14px 19px 14px 19px; font-family: 'Fira Sans', Arial, Helvetica, sans-serif; font-weight: 500; font-size: 16px; line-height: 24px; letter-spacing: -0.2px; color: #ffffff; vertical-align: top; text-align: center; text-align-last: center; text-decoration: none; -webkit-text-size-adjust: none;" href="https://github.com/anishmishra0/cashflow_files/releases/download/Latest/CashFlow.apk" target="_blank"><span style="display: block;"><span>Download now</span></span></a>
+</div>
+<section class="app__feature-container app__section">
+	<!--
+	<div class="container">
+		<h2 class="app__section-title">Feature Graphics</h2>
+	</div>
+	-->
+	<div class="app__feature-wrapper">
+		<img src="assets/og_image.png" class="app__feature" alt="" />
+	</div>
+</section>
+<section class="app__screenshots app__section">
+	<div class="container">
+		<h2 class="app__section-title">Screenshots</h2>
+	</div>
+	<div class="app__screenshots-wrapper container-desktop">
+		<div class="app__screenshots-list">
+			<a href="assets/screenshot1.png" class="lightbox app__screenshot-a">
+				<img src="assets/screenshot1.png" class="app__screenshot" alt="" />
+			</a>
+			<a href="assets/screenshot2.png" class="lightbox app__screenshot-a">
+				<img src="assets/screenshot2.png" class="app__screenshot" alt="" />
+			</a>
+			<a href="assets/screenshot3.png" class="lightbox app__screenshot-a">
+				<img src="assets/screenshot3.png" class="app__screenshot" alt="" />
+			</a>
+			<a href="assets/screenshot4.png" class="lightbox app__screenshot-a">
+				<img src="assets/screenshot4.png" class="app__screenshot" alt="" />
+			</a>
+			<a href="assets/screenshot5.png" class="lightbox app__screenshot-a">
+				<img src="assets/screenshot5.png" class="app__screenshot" alt="" />
+			</a>
+			<a href="assets/screenshot6.png" class="lightbox app__screenshot-a">
+				<img src="assets/screenshot6.png" class="app__screenshot" alt="" />
+			</a>
+		</div>
+	</div>
+</section>
+<section class="app__feature-container app__section">
+	<div class="container">
+		<h2 class="app__section-title">Not a big fan of dark, switch to Light Theme</h2>
+	</div>
+	<div class="app__feature-wrapper">
+		<img src="assets/light_theme.png" class="app__feature" alt="" />
+	</div>
+</section>
+<section class="app__fulldescription app__section container">
+	<h2 class="app__section-title">Description</h2>
+	<div class="app__fulldescription-content">
+		<p>CashFlow helps to manage daily income and spendings in a fast and efficient way.
+It keeps record and help users to create informed financial decision and achive their financial goals faster.
+It also provide an option to backup data to prevent accidental loss.</p>
+<p>CashFlow provides different option to overview and analyse your spending in just few clicks and helps to have a clear picture of their spending trends.</p>
+<p>Take your first step toward your financial Goals and start using CashFlow now
+Features:</p>
+<ul>
+<li>Easily log your income or spendings.</li>
+<li>Completely different section for borrow to keep it seperate.</li>
+<li>You can easily edit your data for any mistakes.</li>
+<li>One click to view all your past records.</li>
+<li>Backup your data online for any accidental loss of your data.</li>
+<li>categorize your income and spending to have a clear insight.</li>
+<li>Easily Analyse and identify areas for savings.</li>
+<li>Applock feature to keep data secure from others using same device</li>
+</ul>
+
+	</div>
+</section>
+		</main>
+		<footer class="footer">
+			<div class="container">
+				<div class="footer__container">
+					<p class="footer__love">
+						<script>document.write('&copy;' + (new Date()).getFullYear());</script><noscript>&copy;2024</noscript> All rights reserved
+					</p>
+					<ul class="footer__links">
+							<li class="footer__link">
+								<a href="https://cashflow-site.web.app/privacy">Privacy Policy</a>
+							</li>
+							<li class="footer__link"></li>
+								<a href="https://cashflow-site.web.app/terms">Terms &amp; Conditions</a>
+							</li>
+					</ul>
+				</div>
+			</div>
+		</footer>
+
+		<script type="text/javascript" src="assets/tobi.min.js" /></script>
+		<script>
+			window.onload = function () {
+				var tobi = new Tobi();
+			};
+		</script>
+		<script>
+			window.onload = function () {
+					document.querySelector('#toggle-theme').addEventListener('change', (event) => {
+						if(event.target.checked){
+							document.getElementsByTagName("html")[0].className = "theme-light";
+						}else{
+							document.getElementsByTagName("html")[0].className = "theme-dark";
+						}
+						localStorage.setItem("theme",document.getElementsByTagName("html")[0].className);
+						
+					});
+					if (typeof(Storage) !== "undefined") {
+						if (localStorage.theme) {
+							document.getElementsByTagName("html")[0].className = localStorage.theme;
+							if (localStorage.theme == "theme-light"){document.querySelector('#toggle-theme').checked = 1}
+							}
+					}
+			};
+		</script>
+    </body>
+</html>
